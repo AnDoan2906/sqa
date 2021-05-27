@@ -21,18 +21,17 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	// display list of employees
 	@GetMapping("/")
 	public String viewHomePage(Model model) {
 		return findPaginated(1, "firstName", "asc", model);		
 	}
 	
 	@GetMapping("/showNewEmployeeForm")
-	public String showNewEmployeeForm(Model model) {
-		// create model attribute to bind form data
+	public String showNewCustomerForm(Model model) {
+		
 		Customer customer = new Customer();
-		model.addAttribute("employee", customer);
-		return "new_employee";
+		model.addAttribute("customer", customer);
+		return "new_customer";
 	}
 	
 	@PostMapping("/saveEmployee")
@@ -45,19 +44,17 @@ public class CustomerController {
 	@GetMapping("/showFormForUpdate/{id}")
 	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
 		
-		// get employee from the service
-		Customer customer = customerService.getEmployeeById(id);
+		Customer customer = customerService.getCustomerById(id);
 		
-		// set employee as a model attribute to pre-populate the form
-		model.addAttribute("employee", customer);
-		return "update_employee";
+		model.addAttribute("customer", customer);
+		return "update_customer";
 	}
 	
-	@GetMapping("/deleteEmployee/{id}")
-	public String deleteEmployee(@PathVariable (value = "id") long id) {
+	@GetMapping("/deleteCustomer/{id}")
+	public String deleteCustomer(@PathVariable (value = "id") long id) {
 		
-		// call delete employee method 
-		this.customerService.deleteEmployeeById(id);
+		
+		this.customerService.deleteCustomerById(id);
 		return "redirect:/";
 	}
 	
@@ -70,7 +67,7 @@ public class CustomerController {
 		int pageSize = 5;
 		
 		Page<Customer> page = customerService.findPaginated(pageNo, pageSize, sortField, sortDir);
-		List<Customer> listEmployees = page.getContent();
+		List<Customer> listCustomer = page.getContent();
 		
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
@@ -80,7 +77,7 @@ public class CustomerController {
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		
-		model.addAttribute("listEmployees", listEmployees);
+		model.addAttribute("listCustomer", listCustomer);
 		return "index";
 	}
 }
