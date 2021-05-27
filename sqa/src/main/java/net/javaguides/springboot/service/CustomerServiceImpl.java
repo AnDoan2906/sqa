@@ -20,17 +20,17 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerRepository customerRepository;
 
 	@Override
-	public List<Customer> getAllEmployees() {
+	public List<Customer> getAllCustomers() {
 		return customerRepository.findAll();
 	}
 
 	@Override
-	public void saveEmployee(Customer customer) {
+	public void saveCustomer(Customer customer) {
 		this.customerRepository.save(customer);
 	}
 
 	@Override
-	public Customer getEmployeeById(long id) {
+	public Customer getCustomerById(long id) {
 		Optional<Customer> optional = customerRepository.findById(id);
 		Customer customer = null;
 		if (optional.isPresent()) {
@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public void deleteEmployeeById(long id) {
+	public void deleteCustomerById(long id) {
 		this.customerRepository.deleteById(id);
 	}
 
