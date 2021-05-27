@@ -8,43 +8,43 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "customer")
 public class Customer {
 	
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "first_name")
-	private String firstName;
+	@Column(name = "customer_name")
+	private String customerName;
 	
-	@Column(name = "last_name")
-	private String lastName;
+	@Column(name = "customer_code")
+	private String customerCode;
 	
-	@Column(name = "email")
-	private String email;
+	@Column(name = "status")
+	private String status;
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
+	public String getCustomerName() {
+		return customerName;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setCustomerName(String customerName) {
+		this.customerName= customerName;
 	}
-	public String getLastName() {
-		return lastName;
+	public String getcustomerCode() {
+		return customerCode;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setCustomerCode(String customerCode) {
+		this.customerCode = customerCode;
 	}
-	public String getEmail() {
-		return email;
+	public String getStatus() {
+		return status;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
